@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
-
+using UnityEngine.SceneManagement;
 public class TankController : MonoBehaviour {
 
     PlayerIndex pIdx;
@@ -54,6 +54,11 @@ public class TankController : MonoBehaviour {
             fire = true;
         }
         else { fire = false; }
+
+        if(state.Buttons.Back == ButtonState.Pressed && prevState.Buttons.Back == ButtonState.Released)
+        {
+            SceneManager.LoadScene("Demo");
+        }
 
 	}
 }
