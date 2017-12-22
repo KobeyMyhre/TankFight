@@ -5,13 +5,14 @@ using UnityEngine;
 public class RespawnManager : MonoBehaviour {
 
     TankHealth tanks;
-     TextMesh respawnTexts;
+    TextMesh respawnTexts;
     public float respawnTime;
     private float timer;
     
     // Use this for initialization
     void Start ()
     {
+        Statics.scoreManager.players.Add(this);
         timer = respawnTime;
         respawnTexts = GetComponent<TextMesh>();
         tanks = GetComponentInChildren<TankHealth>();

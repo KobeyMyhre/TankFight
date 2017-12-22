@@ -19,7 +19,9 @@ public class InterfaceAndStatics : MonoBehaviour {
 public static class Statics
 {
     public static ObjectPool gunPool;
+    public static ObjectPool automaticBulletPool;
     public static ObjectPool explosionPool;
+    public static ScoreManager scoreManager;
     public enum Player
     {
         one = 1,two = 2,three = 3,four = 4

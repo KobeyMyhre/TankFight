@@ -10,13 +10,14 @@ public class TankHealth : MonoBehaviour, IDamageable
     Vector3 respawnPos;
     Statics.Player playerNum;
     TankController controller;
-
-
+    SpriteRenderer mySprite;
+    
     [HideInInspector]
     public RespawnManager respawn;
 	// Use this for initialization
 	void Start ()
     {
+        mySprite = GetComponentInChildren<SpriteRenderer>();
         controller = GetComponent<TankController>();
         switch (controller.playerNum)
         {
@@ -51,9 +52,16 @@ public class TankHealth : MonoBehaviour, IDamageable
         gameObject.SetActive(true);
     }
 
+    void resetColor()
+    {
+        mySprite.color = Color.white;
+    }
+
     public bool takeDamage(int damageTaken)
     {
         currentHealth -= damageTaken;
+        mySprite.color = Color.red;
+        Invoke("resetColor", .2f);
         return die();
     }
 

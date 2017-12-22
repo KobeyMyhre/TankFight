@@ -16,7 +16,7 @@ public class TankController : MonoBehaviour {
     public float rotY;
 
     public bool fire;
-
+    public bool autoFire;
 	// Use this for initialization
 	void Start ()
     {
@@ -55,9 +55,15 @@ public class TankController : MonoBehaviour {
         }
         else { fire = false; }
 
-        if(state.Buttons.Back == ButtonState.Pressed && prevState.Buttons.Back == ButtonState.Released)
+        if (state.Triggers.Left == 1 )
         {
-            SceneManager.LoadScene("Demo");
+            autoFire = true;
+        }
+        else { autoFire = false; }
+
+        if (state.Buttons.Back == ButtonState.Pressed && prevState.Buttons.Back == ButtonState.Released)
+        {
+            SceneManager.LoadScene("Menu");
         }
 
 	}

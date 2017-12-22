@@ -1,0 +1,14 @@
+-PickUps
+	~Health
+	~Ammo
+	~Special Bullets?
+-GameModes
+	~Team DeathMatch
+	~King of the Hill
+	~CTF
+	~GrifBall Style
+	
+
+-Networking?
+-Menu Support for GameMode/Settings
+-Background Music

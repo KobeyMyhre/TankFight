@@ -80,7 +80,7 @@ public class TankBullet : MonoBehaviour {
             }
                        
         }
-        if(collision.tag == "Obstacle")
+        if(collision.tag == "Obstacle" || collision.tag == "Bullet")
         {
             spawnBoom();
             me.returnToPool();

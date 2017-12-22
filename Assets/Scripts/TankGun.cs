@@ -6,6 +6,7 @@ public class TankGun : MonoBehaviour {
 
     [HideInInspector]
     public ObjectPool bulletPool;
+    public ObjectPool automaticPool;
     TankController controller;
     TankScore score;
     public GameObject barrel;
@@ -13,15 +14,25 @@ public class TankGun : MonoBehaviour {
     public Statics.Player playerNum;
     public float reloadTime;
     private float reloadingTimer;
+    public float autoDelay;
+    private float autoTimer;
+    public int automaticAmmo;
+
     public GameObject fireEffect;
     public Sprite bulletSprite;
+    public GameObject automaticEffect;
+    public TextMesh outOfAmmoText;
+    AudioSource shootSound;
 	// Use this for initialization
 	void Start ()
     {
+        shootSound = GetComponent<AudioSource>();
         score = GetComponent<TankScore>();
         bulletPool = Statics.gunPool;
+        automaticPool = Statics.automaticBulletPool;
         controller = GetComponent<TankController>();
-        reloadingTimer = reloadTime;
+        reloadingTimer = 0;
+        autoTimer = 0;
         switch (controller.playerNum)
         {
             case 1:
@@ -43,8 +54,13 @@ public class TankGun : MonoBehaviour {
     {
         fireEffect.SetActive(false);
     }
+    void turnOffAutoEffect()
+    {
+        automaticEffect.SetActive(false);
+    }
     void shoot()
     {
+        shootSound.Play();
         fireEffect.SetActive(true);
         Invoke("turnOffEffect", .1f);
         var bullet = bulletPool.GetObject();
@@ -59,6 +75,24 @@ public class TankGun : MonoBehaviour {
         bullet.GetComponent<SpriteRenderer>().sprite = bulletSprite;
     }
 
+
+    void autoShoot()
+    {
+        automaticEffect.SetActive(true);
+        Invoke("turnOffAutoEffect", autoDelay);
+        var bullet = automaticPool.GetObject();
+        bullet.SetActive(true);
+        bullet.transform.position = barrel.transform.position;
+        bullet.transform.up = barrel.transform.up;
+        Vector2 vel = bullet.transform.up * bulletSpeed;
+        bullet.GetComponent<Rigidbody2D>().velocity = vel;
+        TankBullet bulletProperties = bullet.GetComponent<TankBullet>();
+        bulletProperties.playerNum = playerNum;
+        bulletProperties.score = score;
+    }
+    
+        
+    
 	// Update is called once per frame
 	void Update ()
     {
@@ -71,5 +105,27 @@ public class TankGun : MonoBehaviour {
         {
             reloadingTimer -= Time.deltaTime;
         }
+
+        if(controller.autoFire && autoTimer <= 0 && automaticAmmo > 0)
+        {
+            autoTimer = autoDelay;
+            autoShoot();
+            automaticAmmo--;
+        }
+        else if(controller.autoFire && automaticAmmo <= 0)
+        {
+            outOfAmmoText.gameObject.SetActive(true);
+
+        }
+        else if(autoTimer > 0)
+        {
+            outOfAmmoText.gameObject.SetActive(false);
+            autoTimer -= Time.deltaTime;
+        }
+        else
+        {
+            outOfAmmoText.gameObject.SetActive(false);
+        }
+
 	}
 }
