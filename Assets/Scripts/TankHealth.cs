@@ -65,6 +65,18 @@ public class TankHealth : MonoBehaviour, IDamageable
         return die();
     }
 
+
+    public void healTank(int healAmount)
+    {
+        currentHealth += healAmount;
+        mySprite.color = Color.gray;
+        Invoke("resetColor", .2f);
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
     public bool die()
     {
         if(currentHealth <= 0)

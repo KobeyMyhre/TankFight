@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 4591482638786000}
   - component: {fileID: 114868225638515116}
   - component: {fileID: 114423786099095592}
+  - component: {fileID: 114180877598616880}
   - component: {fileID: 114182942028965246}
   - component: {fileID: 114258873697951138}
   - component: {fileID: 114478344860142752}
@@ -240,7 +241,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111063445530498}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7449999, z: 0}
+  m_LocalPosition: {x: 0, y: 0.43999958, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 4438250710815562}
@@ -494,6 +495,20 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!114 &114180877598616880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1679966157292042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62e0030c3bd1c547ae85cfb4ef7f0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Effect: {fileID: 1111063445530498}
+  barrel: {fileID: 1964148135028304}
+  outOfAmmoText: {fileID: 102211997064111842}
 --- !u!114 &114182942028965246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -506,17 +521,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPool: {fileID: 0}
-  automaticPool: {fileID: 0}
   barrel: {fileID: 1964148135028304}
   bulletSpeed: 5
   playerNum: 0
   reloadTime: 1
-  autoDelay: 0.1
-  automaticAmmo: 50
   fireEffect: {fileID: 1889150472765010}
   bulletSprite: {fileID: 21300000, guid: a5b8a4876f9f5ec409ce2b9e88f901d8, type: 3}
-  automaticEffect: {fileID: 1111063445530498}
-  outOfAmmoText: {fileID: 0}
 --- !u!114 &114258873697951138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -672,7 +682,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: eb6167e3c4a08d8469537c97b34fb8c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -716,7 +726,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: abf2aa8f0c081b946afe24fe3dfe48a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

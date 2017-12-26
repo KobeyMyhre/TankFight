@@ -1,7 +1,13 @@
 -PickUps
 	~Health
 	~Ammo
-	~Special Bullets?
+	~Special Bullets? Left Trigger
+		+Automatic
+		+Mines
+		+Grenades?
+		+Caltrops
+		+MegaRocket
+		+Turrets
 -GameModes
 	~Team DeathMatch
 	~King of the Hill
