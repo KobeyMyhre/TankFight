@@ -30,8 +30,16 @@ public class DeathMatchGameMode : MonoBehaviour {
 	void Update ()
     {
         matchDelay -= Time.deltaTime;
-        int intTime = ((int)matchDelay);
-        startTimer.text = intTime.ToString();
+        if(matchDelay > 6)
+        {
+            startTimer.text = "DeathMatch";
+        }
+        else
+        {
+            int intTime = ((int)matchDelay);
+            startTimer.text = intTime.ToString();
+        }
+        
         
         if(matchDelay <= 0)
         {
