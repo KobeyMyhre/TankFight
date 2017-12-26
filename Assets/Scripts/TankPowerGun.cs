@@ -30,7 +30,7 @@ public class TankPowerGun : MonoBehaviour {
         outOfAmmoText.gameObject.SetActive(false);
         myPowerUp = new Stack<PowerUpGun>();
         controller = GetComponent<TankController>();
-
+        score = GetComponent<TankScore>();
         //Assign who this is
         switch (controller.playerNum)
         {
@@ -76,6 +76,13 @@ public class TankPowerGun : MonoBehaviour {
             }
            
         }
-        else if(bulletDelay > 0) { bulletDelay -= Time.deltaTime; }
+        else if(bulletDelay > 0)
+        {
+            bulletDelay -= Time.deltaTime;
+        }
+        else
+        {
+            outOfAmmoText.gameObject.SetActive(false);
+        }
 	}
 }

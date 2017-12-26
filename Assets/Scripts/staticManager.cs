@@ -10,6 +10,7 @@ public class staticManager : MonoBehaviour {
         Statics.gunPool = transform.GetChild(0).GetComponent<ObjectPool>(); ;
         Statics.explosionPool = transform.GetChild(1).GetComponent<ObjectPool>();
         Statics.automaticBulletPool = transform.GetChild(2).GetComponent<ObjectPool>();
+        Statics.minePool = transform.GetChild(3).GetComponent<ObjectPool>();
         Statics.scoreManager = GetComponentInChildren<ScoreManager>();
 	}
 	

@@ -280,6 +280,7 @@ Transform:
   - {fileID: 1577409049}
   - {fileID: 583334362}
   - {fileID: 1000869521}
+  - {fileID: 1516499096}
   - {fileID: 261864951}
   - {fileID: 420335146}
   - {fileID: 1751314022}
@@ -2898,7 +2899,7 @@ Transform:
   - {fileID: 20072597}
   - {fileID: 2018508847}
   m_Father: {fileID: 173712694}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &261864952
 MonoBehaviour:
@@ -3371,7 +3372,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 173712694}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &420335147
 MonoBehaviour:
@@ -4845,6 +4846,49 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1324241005}
+--- !u!1 &1516499095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1516499096}
+  - component: {fileID: 1516499097}
+  m_Layer: 0
+  m_Name: MinePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1516499096
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1516499095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 173712694}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1516499097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1516499095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f10a8a3a82757a4891216fdbea0b9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject: {fileID: 1679230624826782, guid: 5803c4b117e8a1c4e9a582730624dc9b,
+    type: 2}
+  pooledAmount: 15
 --- !u!1 &1577409047
 GameObject:
   m_ObjectHideFlags: 0
@@ -4989,7 +5033,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 173712694}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1751314023
 MonoBehaviour:
@@ -5005,6 +5049,7 @@ MonoBehaviour:
   spawnAblePickUps:
   - {fileID: 114845899372434166, guid: d00f66d1325f46f489444b65a4b48fde, type: 2}
   - {fileID: 114055391070739976, guid: 6270f966155f8a84bbff2c463a150a9b, type: 2}
+  - {fileID: 114896159760080082, guid: f128137890a46f84ca5e32d262e900a4, type: 2}
   spawnRange: 3
   spawnInterval: 12
 --- !u!1001 &1848245770
