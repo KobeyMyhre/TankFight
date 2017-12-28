@@ -20,8 +20,9 @@ public static class Statics
 {
     public static ObjectPool gunPool;
     public static ObjectPool automaticBulletPool;
-    public static ObjectPool explosionPool;
+    public static ObjectPool[] explosionPool;
     public static ObjectPool minePool;
+    public static ObjectPool grenadePool;
     public static ScoreManager scoreManager;
     public enum Player
     {

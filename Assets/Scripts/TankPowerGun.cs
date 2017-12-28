@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class TankPowerGun : MonoBehaviour {
 
 
@@ -19,7 +19,8 @@ public class TankPowerGun : MonoBehaviour {
     public GameObject Effect;
     public GameObject barrel;
     public TextMesh outOfAmmoText;
-
+    public Image ammoFill;
+    public string ImageName;
     //PowerUps TriggerDelay
     float bulletDelay;
 
@@ -31,6 +32,7 @@ public class TankPowerGun : MonoBehaviour {
         myPowerUp = new Stack<PowerUpGun>();
         controller = GetComponent<TankController>();
         score = GetComponent<TankScore>();
+        ammoFill = GameObject.Find(ImageName).GetComponent<Image>();
         //Assign who this is
         switch (controller.playerNum)
         {
@@ -67,6 +69,7 @@ public class TankPowerGun : MonoBehaviour {
                     Invoke("turnOffEffect", .2f);
                     myPowerUp.Peek().shoot(score, playerNum, barrel.transform);
                     bulletDelay = myPowerUp.Peek().fireDelay;
+                    ammoFill.fillAmount = ((float)myPowerUp.Peek().currentSpecialAmmo / (float)myPowerUp.Peek().maxSpecialAmmo);
                 }
                 else
                 {

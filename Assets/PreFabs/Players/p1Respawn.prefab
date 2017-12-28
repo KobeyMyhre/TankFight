@@ -506,9 +506,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e68d765f6f68e4cb7398579405dc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  score: 0
-  textName: p1Kills
+  scoreText: {fileID: 114251641022441140, guid: fe7251ecee5605841bc5ccc94360c063,
+    type: 2}
+  score: 1
+  textName: P1Score
   playerNum: 1
 --- !u!114 &114431791848029932
 MonoBehaviour:
@@ -605,6 +606,8 @@ MonoBehaviour:
   Effect: {fileID: 1296458123054620}
   barrel: {fileID: 1396718014473900}
   outOfAmmoText: {fileID: 102353297457344574}
+  ammoFill: {fileID: 0}
+  ImageName: P1AmmoFill
 --- !u!212 &212052953534835014
 SpriteRenderer:
   m_ObjectHideFlags: 1

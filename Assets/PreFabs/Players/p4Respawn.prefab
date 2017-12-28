@@ -509,6 +509,8 @@ MonoBehaviour:
   Effect: {fileID: 1111063445530498}
   barrel: {fileID: 1964148135028304}
   outOfAmmoText: {fileID: 102211997064111842}
+  ammoFill: {fileID: 0}
+  ImageName: P4AmmoFill
 --- !u!114 &114182942028965246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -585,7 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
   score: 0
-  textName: p4Kills
+  textName: P4Score
   playerNum: 4
 --- !u!114 &114868225638515116
 MonoBehaviour:

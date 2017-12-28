@@ -19,7 +19,7 @@ public class TankMine : MonoBehaviour
 	void Start ()
     {
         onOff = true;
-        explosion = Statics.explosionPool;
+        explosion = Statics.explosionPool[0];
         me = GetComponent<pooledObject>();
         blinker = transform.GetChild(0).gameObject;
 	}

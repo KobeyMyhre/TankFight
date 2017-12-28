@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+
         players = new List<RespawnManager>();
         
 	}

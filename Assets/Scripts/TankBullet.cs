@@ -15,7 +15,7 @@ public class TankBullet : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        explosion = Statics.explosionPool;
+        explosion = Statics.explosionPool[0];
         me = GetComponent<pooledObject>();
 	}
 	

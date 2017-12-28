@@ -589,7 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
   score: 0
-  textName: p2Kills
+  textName: P2Score
   playerNum: 2
 --- !u!114 &114963012507193360
 MonoBehaviour:
@@ -605,6 +605,8 @@ MonoBehaviour:
   Effect: {fileID: 1160285421656324}
   barrel: {fileID: 1166229099643016}
   outOfAmmoText: {fileID: 102415104043027174}
+  ammoFill: {fileID: 0}
+  ImageName: P2AmmoFill
 --- !u!212 &212001235325385570
 SpriteRenderer:
   m_ObjectHideFlags: 1

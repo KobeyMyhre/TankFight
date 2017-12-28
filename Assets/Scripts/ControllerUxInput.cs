@@ -13,7 +13,7 @@ public class ControllerUxInput : MonoBehaviour {
     public int activeIndex;
     public bool UpDown;
     public bool LeftRight;
-
+    public Sprite selectImage;
     // Use this for initialization
     void Start()
     {
@@ -71,6 +71,6 @@ public class ControllerUxInput : MonoBehaviour {
         }
 
         clickAbles[activeIndex].Select();
-
+       
     }
 }

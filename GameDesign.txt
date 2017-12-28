@@ -2,9 +2,9 @@
 	~Health
 	~Ammo
 	~Special Bullets? Left Trigger
-		+Automatic
-		+Mines
-		+Grenades?
+		+Automatic	+
+		+Mines		+
+		+Grenades	+
 		+Caltrops
 		+MegaRocket
 		+Turrets
@@ -18,3 +18,4 @@
 -Networking?
 -Menu Support for GameMode/Settings
 -Background Music
+-AI Bots

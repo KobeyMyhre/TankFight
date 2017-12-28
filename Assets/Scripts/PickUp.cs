@@ -43,6 +43,7 @@ public class PickUp : MonoBehaviour {
                     powerGun.myPowerUp.Pop();
                 }
                 powerGun.myPowerUp.Push(specialGun);
+                powerGun.ammoFill.fillAmount = (float)specialGun.currentSpecialAmmo / (float)specialGun.maxSpecialAmmo;
                 gameObject.SetActive(false);
             }
         }
