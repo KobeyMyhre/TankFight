@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour {
 
     public int scoreToWin;
+    public float KOTHPointSpeed;
     public List<RespawnManager> players;
     public GameObject gameOverUI;
     public float sendToMenuDelay;

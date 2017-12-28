@@ -5,10 +5,11 @@ using UnityEngine.UI;
 public class TankScore : MonoBehaviour {
 
     public Text scoreText;
-    public int score;
+    public float score;
     public string textName;
     ScoreManager scoreManager;
     public int playerNum;
+    public Statics.GameMode gameMode;
 	// Use this for initialization
 	void Start ()
     {
@@ -18,13 +19,38 @@ public class TankScore : MonoBehaviour {
         scoreText.text = score.ToString();
 	}
 	
-    public void updateScore()
+    public void onKillScore()
     {
         score++;
-        scoreText.text = score.ToString();
-        if(scoreManager.scoreToWin == score)
+        int wholeScore = (int) score;
+        scoreText.text = wholeScore.ToString();
+        if (scoreManager.scoreToWin == wholeScore)
         {
             scoreManager.winTheGame(playerNum);
+        }
+    }
+
+    public void kingOfTheHillScore()
+    {
+        score += Mathf.Lerp(0, scoreManager.scoreToWin, scoreManager.KOTHPointSpeed * Time.deltaTime);
+        int WholeScore = (int)score;
+        scoreText.text = WholeScore.ToString();
+        if (scoreManager.scoreToWin == WholeScore)
+        {
+            scoreManager.winTheGame(playerNum);
+        }
+    }
+
+    public void updateScore()
+    {
+       switch(gameMode)
+        {
+            case Statics.GameMode.DeathMatch:
+                onKillScore();
+                break;
+            case Statics.GameMode.KingOfTheHill:
+                kingOfTheHillScore();
+                break;
         }
     }
 

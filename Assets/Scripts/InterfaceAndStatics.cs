@@ -28,6 +28,10 @@ public static class Statics
     {
         one = 1,two = 2,three = 3,four = 4
     }
+    public enum GameMode
+    {
+        DeathMatch, KingOfTheHill
+    }
 }
 
 public interface IDamageable

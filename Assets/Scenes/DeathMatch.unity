@@ -2918,6 +2918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5751064518a5182449ac075850d407ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameType: DeathMatch
   startTimer: {fileID: 1324241007}
   matchDelay: 7
   Players:
@@ -3392,6 +3393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreToWin: 10
+  KOTHPointSpeed: 0
   players: []
   gameOverUI: {fileID: 1008908260}
   sendToMenuDelay: 6
