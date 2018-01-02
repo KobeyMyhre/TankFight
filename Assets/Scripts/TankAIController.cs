@@ -51,24 +51,105 @@ public class TankAIController : TankController {
     }
     public void moveToTank(GameObject target)
     {
-        Vector2 dir = transform.position - target.transform.position;
+      
+
+        //Obstacle Avoidance
+        Vector2 avoidanceForce = Vector2.zero;
+        RaycastHit2D hit = Physics2D.CircleCast(body.position, .5f, body.up, .5f, LayerMask.GetMask("AIAvoidance"));
+        if (hit.collider != null)
+        {
+            if (hit.collider.tag == "Obstacle" || hit.collider.tag == "Cover")
+            {
+                //Debug.Log(hit.collider.name);
+                avoidanceForce = hit.normal;
+            }
+        }
+        
+        //Direction to Target
+        Vector2 dir = (Vector2)(transform.position - target.transform.position) + avoidanceForce;
         dir += (Vector2)transform.position;
-        body.transform.up = Vector3.Slerp(body.transform.up, ((Vector2)body.transform.position - dir).normalized, bodyRotSpeed * Time.deltaTime);
-        rb.AddForce(body.transform.up * speed);
+
+        //Turn towards Avoidance.Normal or Target
+        if(avoidanceForce != Vector2.zero)
+        {
+            body.transform.up = Vector3.Slerp(body.transform.up, ((Vector2)body.transform.position - avoidanceForce).normalized, bodyRotSpeed * Time.deltaTime);
+
+        }
+        else
+        {
+            body.transform.up = Vector3.Slerp(body.transform.up, ((Vector2)body.transform.position - dir).normalized, bodyRotSpeed * Time.deltaTime);
+
+        }
+
+
+
+        //Move towards facing direction
+        rb.velocity = ((Vector2)body.transform.up) * speed;
+      
+    }
+
+
+    public GameObject aimAtTank()
+    {
+        float highestScore = Mathf.NegativeInfinity;
+        float lowestHealth = Mathf.Infinity;
+        float lowestDistance = 5;
+        int lowestHealthModifier = 2;
+        GameObject retval = null;
+        foreach (var p in Players)
+        {
+            int score = 0;
+            TankHealth pHealth = p.GetComponent<TankHealth>();
+            float distance = Vector2.Distance(transform.position, p.transform.position);
+            if (distance <= lowestDistance)
+            {
+                score++;
+               // lowestDistance = distance;
+            }
+            if(pHealth.currentHealth <= lowestHealth)
+            {
+                score += lowestHealthModifier;
+                lowestHealthModifier++;
+                lowestHealth = pHealth.currentHealth;
+            }
+            if(score > highestScore)
+            {
+                retval = p.gameObject;
+                highestScore = score;
+            }
+        }
+        return retval;
     }
 
     public void aimBarrel(GameObject target)
     {
         Vector2 dir = barrel.transform.position - target.transform.position;
         dir += (Vector2)barrel.transform.position;
-        barrel.transform.up = Vector3.Slerp(body.transform.up, ((Vector2)barrel.transform.position - dir).normalized, rotSpeed * Time.deltaTime);
+        barrel.transform.up = Vector3.Slerp(barrel.transform.up, ((Vector2)barrel.transform.position - dir).normalized, rotSpeed * Time.deltaTime);
 
     }
 	
+
+    public bool shouldFire(GameObject target)
+    {
+
+        Vector2 dir = barrel.transform.position - target.transform.position;
+        float angle = Vector2.Angle(dir.normalized, barrel.transform.up);
+        if(angle >= 160 && angle <= 180)
+        {
+            return true;
+        }
+        //Debug.Log(angle);
+
+        return false;
+    }
+
+
 	// Update is called once per frame
 	void Update ()
     {
         moveToTank(moveToDecision());
-        aimBarrel(moveToDecision());
+        aimBarrel(aimAtTank());
+        fire = shouldFire(aimAtTank());
 	}
 }
