@@ -38,8 +38,7 @@ public class TankController : MonoBehaviour {
         
 	}
 	
-	// Update is called once per frame
-	void Update ()
+    protected virtual void Controlls()
     {
         prevState = state;
         state = GamePad.GetState(pIdx);
@@ -49,13 +48,13 @@ public class TankController : MonoBehaviour {
         rotX = state.ThumbSticks.Right.X;
         rotY = state.ThumbSticks.Right.Y;
 
-        if(state.Triggers.Right == 1 && prevState.Triggers.Right <= 0.8f)
+        if (state.Triggers.Right == 1 && prevState.Triggers.Right <= 0.8f)
         {
             fire = true;
         }
         else { fire = false; }
 
-        if (state.Triggers.Left == 1 )
+        if (state.Triggers.Left == 1)
         {
             autoFire = true;
         }
@@ -65,6 +64,13 @@ public class TankController : MonoBehaviour {
         {
             SceneManager.LoadScene("Menu");
         }
+    }
+
+
+	// Update is called once per frame
+	void Update ()
+    {
+        Controlls();
 
 	}
 }
