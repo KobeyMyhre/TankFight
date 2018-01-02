@@ -10,7 +10,7 @@
 		+Turrets
 -GameModes
 	~Team DeathMatch
-	~King of the Hill
+	~King of the Hill	+
 	~CTF
 	~GrifBall Style
 	
