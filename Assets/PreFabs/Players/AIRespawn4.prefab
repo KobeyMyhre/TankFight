@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 114950374726491694}
   - component: {fileID: 102260941118622490}
   m_Layer: 0
-  m_Name: AIRespawn
+  m_Name: AIRespawn4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,6 +554,8 @@ MonoBehaviour:
   rotSpeed: 2.5
   body: {fileID: 4741593432265488}
   barrel: {fileID: 4194968508355914}
+  Players: []
+  gameMode: 1
 --- !u!114 &114558624157288450
 MonoBehaviour:
   m_ObjectHideFlags: 1

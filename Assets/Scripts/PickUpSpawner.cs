@@ -11,6 +11,7 @@ public class PickUpSpawner : MonoBehaviour {
 
     void spawnPickUp()
     {
+        TankAIController[] AI = FindObjectsOfType<TankAIController>();
         int idx = Random.Range(0, spawnAblePickUps.Length);
         var spawnedPickUp = Instantiate(spawnAblePickUps[idx]);
         float x = Random.Range(-spawnRange, spawnRange);
@@ -18,6 +19,10 @@ public class PickUpSpawner : MonoBehaviour {
         Vector2 spawnPos = new Vector2(x,y);
         spawnedPickUp.transform.position = spawnPos;
         spawnTimer = spawnInterval;
+        foreach(TankAIController tank in AI)
+        {
+            tank.Players.Add(spawnedPickUp.gameObject);
+        }
     }
 
 	// Use this for initialization
@@ -32,6 +37,7 @@ public class PickUpSpawner : MonoBehaviour {
         spawnTimer -= Time.deltaTime;
         if(spawnTimer <= 0)
         {
+            
             spawnPickUp();
         }
 	}
