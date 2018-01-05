@@ -4,16 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 public class DeathMatchGameMode : MonoBehaviour {
 
+    NumberOfPlayers numPlayers;
     public string GameType;
     public Text startTimer;
     public float matchDelay;
     public GameObject[] Players;
+    public GameObject[] AIPlayers;
     public Transform[] spawnPoints;
     AudioSource countDown;
     public Statics.GameMode gameMode;
 	// Use this for initialization
 	void Start ()
     {
+        numPlayers = FindObjectOfType<NumberOfPlayers>();
         countDown = GetComponent<AudioSource>();
         countDown.Play();
 	}
@@ -28,7 +31,7 @@ public class DeathMatchGameMode : MonoBehaviour {
         spawnedPlayer.GetComponentInChildren<TankScore>().gameMode = gameMode;
        // spawnedPlayer.transform.rotation = spawnPos.rotation;
     }
-
+    int pickUpIdx;
 	// Update is called once per frame
 	void Update ()
     {
@@ -46,9 +49,14 @@ public class DeathMatchGameMode : MonoBehaviour {
         
         if(matchDelay <= 0)
         {
-            for(int i = 0; i < Players.Length; i++)
+            for(int i = 0; i < numPlayers.numOfPlayers; i++)
             {
+                pickUpIdx = i;
                 spawnPlayer(Players[i], spawnPoints[i]);
+            }
+            for (int i = pickUpIdx + 1; i < Players.Length; i++)
+            {
+                spawnPlayer(AIPlayers[i], spawnPoints[i]);
             }
             startTimer.text = "";
             gameObject.SetActive(false);

@@ -4040,6 +4040,11 @@ MonoBehaviour:
   startTimer: {fileID: 1432945375}
   matchDelay: 7
   Players:
+  - {fileID: 1040578879751818, guid: 03b950c270c46b943b25d41b1779c80d, type: 2}
+  - {fileID: 1905622759215710, guid: 62a9c7409df20c24a9441c00c07ee8da, type: 2}
+  - {fileID: 1174129630476420, guid: 06375230629f0ff42a6c3f43c1fe96a4, type: 2}
+  - {fileID: 1871429567140292, guid: f702b3aad53e5a04eb447cdc12ba9a97, type: 2}
+  AIPlayers:
   - {fileID: 1374082707103998, guid: d398e7f2fd9b00843a5c1509a16196b4, type: 2}
   - {fileID: 1374082707103998, guid: b38cfa2f68eb8e04d878d113c5c8169d, type: 2}
   - {fileID: 1374082707103998, guid: ec36b65e329762049b018ff6187900ac, type: 2}

@@ -14,13 +14,16 @@ public class TankAIController : TankController {
     public List<GameObject> Players;
     TankHealth[] playerSearch;
     TankPowerGun powerGun;
-
+    public float reactionDelay;
+    float reactionTimer;
     public Statics.GameMode gameMode;
 
     KOTHCenter controlPoint;
 	// Use this for initialization
 	void Start ()
     {
+        reactionDelay = .1f;
+        reactionTimer = 0;
         powerGun = GetComponent<TankPowerGun>();
         rb = GetComponent<Rigidbody2D>();
         Players = new List<GameObject>();
@@ -222,11 +225,28 @@ public class TankAIController : TankController {
         }
         Players.TrimExcess();
     }
+    GameObject moveToTarget;
+    GameObject aimAtTarget;
 	// Update is called once per frame
 	void Update ()
     {
-        moveToTank(moveToDecision());
-        aimBarrel(aimAtTank());
+        reactionTimer -= Time.deltaTime;
+        if(reactionTimer <= 0)
+        {
+            moveToTarget = moveToDecision();
+            aimAtTarget = aimAtTank();
+            reactionTimer = reactionDelay;
+        }
+        if(moveToTarget != null)
+        {
+            moveToTank(moveToTarget);
+        }
+        if(aimAtTarget != null)
+        {
+            aimBarrel(aimAtTarget);
+        }
+        
+        
         
         if(shouldFire(aimAtTank()))
         {

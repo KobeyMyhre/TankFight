@@ -14,11 +14,29 @@ public class ControllerUxInput : MonoBehaviour {
     public bool UpDown;
     public bool LeftRight;
     public Sprite selectImage;
+    
     // Use this for initialization
     void Start()
     {
-
+       
         
+    }
+
+    int downCount =0;
+    public bool getButtonDown()
+    {
+        
+        if(state.Buttons.A == ButtonState.Pressed)
+        {
+            downCount++;
+            if (downCount >= 1)
+            {
+                return false;
+            }
+            return true;            
+        }
+        downCount = 0;
+        return false;
     }
 
     // Update is called once per frame
@@ -26,7 +44,7 @@ public class ControllerUxInput : MonoBehaviour {
     {
         prevState = state;
         state = GamePad.GetState(pIdx);
-
+ 
         if (UpDown)
         {
             if (prevState.ThumbSticks.Left.Y == 0 && state.ThumbSticks.Left.Y > 0)
@@ -65,10 +83,13 @@ public class ControllerUxInput : MonoBehaviour {
             activeIndex = clickAbles.Length -1;
         }
 
-        if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
+        if (getButtonDown())
         {
+            
             clickAbles[activeIndex].onClick.Invoke();
         }
+       
+        
 
         clickAbles[activeIndex].Select();
        

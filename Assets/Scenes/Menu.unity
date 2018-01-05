@@ -420,10 +420,10 @@ RectTransform:
   m_Father: {fileID: 1856229663}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.289, y: 0.3317778}
-  m_AnchorMax: {x: 0.5711461, y: 0.5}
-  m_AnchoredPosition: {x: 28.329178, y: 7.526245}
-  m_SizeDelta: {x: 132.89578, y: 11.347511}
+  m_AnchorMin: {x: 0.17400001, y: 0.3095556}
+  m_AnchorMax: {x: 0.864, y: 0.5}
+  m_AnchoredPosition: {x: -1.1709995, y: -1.6738}
+  m_SizeDelta: {x: -2.1042175, y: 3.3475113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &954935583
 MonoBehaviour:
@@ -573,6 +573,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -684,10 +685,10 @@ RectTransform:
   m_Father: {fileID: 1856229663}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.28275, y: 0.14144441}
-  m_AnchorMax: {x: 0.5711461, y: 0.3095556}
-  m_AnchoredPosition: {x: 31.361687, y: -4.948305}
-  m_SizeDelta: {x: 134.83076, y: 8.339355}
+  m_AnchorMin: {x: 0.17400001, y: 0.067}
+  m_AnchorMax: {x: 0.864, y: 0.25634468}
+  m_AnchoredPosition: {x: 0.86100006, y: -1}
+  m_SizeDelta: {x: 1.8307648, y: 0.33935547}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1407264721
 MonoBehaviour:
@@ -785,7 +786,7 @@ GameObject:
   - component: {fileID: 1530212379}
   - component: {fileID: 1530212378}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -804,10 +805,10 @@ RectTransform:
   m_Father: {fileID: 1856229663}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.29900002, y: 0.5}
-  m_AnchorMax: {x: 0.70112497, y: 0.8891482}
-  m_AnchoredPosition: {x: 5.204218, y: 27.456758}
-  m_SizeDelta: {x: 187.08792, y: 28.613495}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.0000081062, y: 1.05}
+  m_SizeDelta: {x: -9.899994, y: 2.0999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1530212378
 MonoBehaviour:
@@ -830,18 +831,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 80411afff1d605c4996aad5e3e1bfdff, type: 3}
-    m_FontSize: 70
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 160
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tank Fight
+  m_Text: Field of Tanks
 --- !u!222 &1530212379
 CanvasRenderer:
   m_ObjectHideFlags: 0
