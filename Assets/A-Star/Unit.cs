@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour {
         {
             path = newPath;
             StopCoroutine("followPath");
+            
             StartCoroutine("followPath");
         }
     }
@@ -41,6 +42,10 @@ public class Unit : MonoBehaviour {
                 }
                 currentWaypoint = path[targetIdx];
             }
+
+            
+
+
             transform.position = Vector3.MoveTowards(transform.position,currentWaypoint, speed * Time.deltaTime);
             yield return null;
         }

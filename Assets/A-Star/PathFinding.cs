@@ -57,10 +57,10 @@ public class PathFinding : MonoBehaviour {
         for(int i =1; i < path.Count; i++)
         {
             Vector2 dirNew = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);
-            if(dirNew != dirOld)
-            {
+           // if(dirNew != dirOld)
+           // {
                 wayPoints.Add(path[i].worldPosition);
-            }
+           // }
             dirOld = dirNew;
         }
         return wayPoints.ToArray();

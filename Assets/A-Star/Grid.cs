@@ -23,7 +23,7 @@ public class Grid : MonoBehaviour {
     
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
         if(grid != null && drawGridGizmos)
         {
             foreach(Node n in grid)
@@ -62,7 +62,7 @@ public class Grid : MonoBehaviour {
     public Node NodeFromWorldPoint(Vector3 worldPosition)
     {
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
-        float percentY = (worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y;
+        float percentY = (worldPosition.y + gridWorldSize.y / 2) / gridWorldSize.y;
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
 
@@ -74,14 +74,14 @@ public class Grid : MonoBehaviour {
 
     void createdGrid()
     {
-        Vector3 worldBottomLeft = transform.position - Vector3.right * (gridWorldSize.x/2) - Vector3.forward * (gridWorldSize.y /2);
+        Vector3 worldBottomLeft = transform.position - Vector3.right * (gridWorldSize.x/2) - Vector3.up * (gridWorldSize.y /2);
         grid = new Node[gridxSizeX, grideSizeY];
         for(int x =0; x < gridxSizeX; x++)
         {
             for(int y = 0; y < grideSizeY; y++)
             {
-                Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
-                bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius,unWalkableMask));
+                Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
+                bool walkable = !(Physics2D.OverlapCircle(worldPoint, nodeRadius,unWalkableMask));
 
                 int movementPenalty = 0;
 

@@ -16,14 +16,27 @@ public class TankAIController : TankController {
     TankPowerGun powerGun;
     public float reactionDelay;
     float reactionTimer;
+    public float shootReactionDelay;
+    float shootReactionTimer;
     public Statics.GameMode gameMode;
 
     KOTHCenter controlPoint;
+
+
+
+    Vector3[] path;
+    int targetIdx = 0;
+    
+
+
+
 	// Use this for initialization
 	void Start ()
     {
         reactionDelay = .1f;
         reactionTimer = 0;
+        shootReactionDelay = 1.8f;
+        shootReactionTimer = 0;
         powerGun = GetComponent<TankPowerGun>();
         rb = GetComponent<Rigidbody2D>();
         Players = new List<GameObject>();
@@ -40,6 +53,8 @@ public class TankAIController : TankController {
         {
             controlPoint = FindObjectOfType<KOTHCenter>();
         }
+
+        
        
 	}
 
@@ -81,6 +96,84 @@ public class TankAIController : TankController {
         }
         return retval;
     }
+    public void OnDrawGizmos()
+    {
+        if (path != null)
+        {
+            for (int i = targetIdx; i < path.Length; i++)
+            {
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawSphere(path[i], .2f);
+                if (i == targetIdx)
+                {
+                    Gizmos.DrawLine(transform.position, path[i]);
+                }
+                else
+                {
+                    Gizmos.DrawLine(path[i - 1], path[i]);
+                }
+            }
+        }
+    }
+    public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
+    {
+        if (pathSuccessful && gameObject.activeInHierarchy)
+        {
+            path = newPath;
+            
+            StopCoroutine("followPath");
+            StartCoroutine("followPath");
+        }
+    }
+
+    bool closeEnoughVector(Vector2 posA, Vector2 posB, float acurracy)
+    {
+        float acceptablePosX = posB.x + acurracy;
+        float acceptableNegX = posB.x - acurracy;
+        float acceptablePosY = posB.y + acurracy;
+        float acceptableNegY = posB.y - acurracy;
+
+        if(posA.x > acceptableNegX && posA.x < acceptablePosX && posA.y < acceptablePosY && posA.y > acceptableNegY)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    IEnumerator followPath()
+    {
+        Vector3 currentWaypoint = path[0];
+        
+        while (true)
+        {
+            
+            if (closeEnoughVector(transform.position, currentWaypoint, .02f))
+            {
+                targetIdx++;
+                if (targetIdx >= path.Length)
+                {
+                    
+                    yield break;
+                }
+                currentWaypoint = path[targetIdx];
+            }
+            Vector2 dir = (Vector2)(transform.position - currentWaypoint);
+            dir += (Vector2)transform.position;
+            body.transform.up = Vector3.Slerp(body.transform.up, ((Vector2)body.transform.position - dir).normalized, bodyRotSpeed * Time.deltaTime);
+
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+
+            //rb.velocity = ((Vector2)body.transform.up) * speed;
+
+            if(!gameObject.activeInHierarchy)
+            {
+                StopCoroutine("followPath");
+            }
+
+            yield return null;
+        }
+    }
+
     public void moveToTank(GameObject target)
     {
       
@@ -225,35 +318,46 @@ public class TankAIController : TankController {
         }
         Players.TrimExcess();
     }
-    GameObject moveToTarget;
-    GameObject aimAtTarget;
+    public GameObject moveToTarget;
+    public GameObject aimAtTarget;
 	// Update is called once per frame
 	void Update ()
     {
         reactionTimer -= Time.deltaTime;
+        shootReactionTimer -= Time.deltaTime;
         if(reactionTimer <= 0)
         {
             moveToTarget = moveToDecision();
             aimAtTarget = aimAtTank();
             reactionTimer = reactionDelay;
         }
-        if(moveToTarget != null)
+        if(moveToTarget != null && moveToTarget.activeInHierarchy)
         {
-            moveToTank(moveToTarget);
+            PathRequestManager.RequestPath(transform.position, moveToTarget.transform.position, OnPathFound);
+            //moveToTank(moveToTarget);
         }
-        if(aimAtTarget != null)
+        else
+        {
+            moveToTarget = moveToDecision();
+        }
+        if(aimAtTarget != null && aimAtTarget.activeInHierarchy)
         {
             aimBarrel(aimAtTarget);
         }
+        else
+        {
+            aimAtTarget = aimAtTank();
+        }
         
         
         
-        if(shouldFire(aimAtTank()))
+        if(shouldFire(aimAtTank()) && shootReactionTimer <= 0)
         {
             if(hasPowerUp())
             {
                 autoFire = true;
             } else { fire = true; }
+            shootReactionTimer = shootReactionDelay;
         }
         else
         {

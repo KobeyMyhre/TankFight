@@ -2549,6 +2549,77 @@ MonoBehaviour:
   gameOverUI: {fileID: 1008908260}
   sendToMenuDelay: 6
   gameOver: 0
+--- !u!1 &514703156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 514703160}
+  - component: {fileID: 514703159}
+  - component: {fileID: 514703158}
+  - component: {fileID: 514703157}
+  m_Layer: 0
+  m_Name: A*
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &514703157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514703156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49f3b5ef1e21904aa3aca49f003e322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &514703158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514703156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da12683f335cab9408cc03770e45b39a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &514703159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514703156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b20628f51f2916499e7a5598f0c5b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawGridGizmos: 1
+  gridWorldSize: {x: 18, y: 10}
+  nodeRadius: 0.1
+  unWalkableMask:
+    serializedVersion: 2
+    m_Bits: 256
+  walkableRegions: []
+--- !u!4 &514703160
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514703156}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &573164251 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4130410767760232, guid: 06375230629f0ff42a6c3f43c1fe96a4,
@@ -3755,7 +3826,7 @@ RectTransform:
   m_Children:
   - {fileID: 729600576}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4852,7 +4923,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4732516777203204, guid: a8f7df4da8dc3b54fb7de766e2c8b6fa, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1374082707103998, guid: a8f7df4da8dc3b54fb7de766e2c8b6fa, type: 2}
       propertyPath: m_IsActive
