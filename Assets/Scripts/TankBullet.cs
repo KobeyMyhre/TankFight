@@ -7,6 +7,7 @@ public class TankBullet : MonoBehaviour {
     public int frontalDamage;
     public int normalDamage;
     ObjectPool explosion;
+    ObjectPool weakExplosion;
     pooledObject me;
     [HideInInspector]
     public Statics.Player playerNum;
@@ -16,6 +17,7 @@ public class TankBullet : MonoBehaviour {
     void Start ()
     {
         explosion = Statics.explosionPool[0];
+        weakExplosion = Statics.explosionPool[1];
         me = GetComponent<pooledObject>();
 	}
 	
@@ -30,7 +32,12 @@ public class TankBullet : MonoBehaviour {
         explosionSpawn.transform.position = transform.position;
         explosionSpawn.SetActive(true); 
     }
-
+    void spawnLilBoom()
+    {
+        var explosionSpawn = weakExplosion.GetObject();
+        explosionSpawn.transform.position = transform.position;
+        explosionSpawn.SetActive(true);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -49,7 +56,7 @@ public class TankBullet : MonoBehaviour {
 
                 if(topBottom == -1 && angle >= 125 && angle <= 180)
                 {
-                    Debug.Log("Front");
+                    spawnLilBoom();
                     if(hitable.takeDamage(frontalDamage))
                     {
                         score.updateScore();
@@ -57,7 +64,8 @@ public class TankBullet : MonoBehaviour {
                 }
                 else
                 {
-                    if(hitable.takeDamage(normalDamage))
+                    spawnBoom();
+                    if (hitable.takeDamage(normalDamage))
                     {
                         score.updateScore();
                     }
@@ -75,7 +83,7 @@ public class TankBullet : MonoBehaviour {
                 //    hitable.takeDamage(frontalDamage);
                 //    Debug.Log("Front/back Hit");
                 //}
-                spawnBoom();
+                
                 me.returnToPool();
             }
                        

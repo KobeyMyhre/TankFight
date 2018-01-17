@@ -42,5 +42,6 @@ public class TankMovement : MonoBehaviour {
         Vector2 desireRot = new Vector2(barrel.transform.position.x - controller.rotX, barrel.transform.position.y - controller.rotY);
         barrel.transform.up = Vector3.Slerp(barrel.transform.up, ((Vector2)barrel.transform.position - desireRot).normalized, rotSpeed * Time.deltaTime);
 
+        
     }
 }

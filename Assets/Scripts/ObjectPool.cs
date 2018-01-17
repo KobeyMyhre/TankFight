@@ -20,6 +20,7 @@ public class ObjectPool : MonoBehaviour {
         {
             var spawnedObj = Instantiate(pooledObject);
             spawnedObj.GetComponent<pooledObject>().myPool = this;
+            spawnedObj.transform.parent = gameObject.transform;
             spawnedObj.SetActive(false);
             pool.Push(spawnedObj);
         }
@@ -31,7 +32,19 @@ public class ObjectPool : MonoBehaviour {
         if(pool.Count > 0)
         {
             return pool.Pop();
-        }else { Debug.Log("Pool is empy"); return null; }
+        }
+        else
+        {
+            for (int i = 0; i < pooledAmount; i++)
+            {
+                var spawnedObj = Instantiate(pooledObject);
+                spawnedObj.GetComponent<pooledObject>().myPool = this;
+                spawnedObj.transform.parent = gameObject.transform;
+                spawnedObj.SetActive(false);
+                pool.Push(spawnedObj);
+            }
+            return pool.Pop();
+        }
     }
 	
 	// Update is called once per frame

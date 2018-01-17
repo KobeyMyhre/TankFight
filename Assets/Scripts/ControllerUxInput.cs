@@ -5,7 +5,7 @@ using XInputDotNetPure;
 using UnityEngine.UI;
 public class ControllerUxInput : MonoBehaviour {
 
-    public Button[] clickAbles;
+    
 
     PlayerIndex pIdx = PlayerIndex.One;
     GamePadState state;
@@ -13,13 +13,16 @@ public class ControllerUxInput : MonoBehaviour {
     public int activeIndex;
     public bool UpDown;
     public bool LeftRight;
-    public Sprite selectImage;
-    
+    //public Sprite selectImage;
+
+    public Button currentButton;
+    public Selectable selectable;
+
     // Use this for initialization
     void Start()
     {
-       
-        
+
+        selectable = currentButton;
     }
 
     int downCount =0;
@@ -44,54 +47,67 @@ public class ControllerUxInput : MonoBehaviour {
     {
         prevState = state;
         state = GamePad.GetState(pIdx);
- 
-        if (UpDown)
-        {
+        //Vector3 joystickDir = new Vector3(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y, 0);
+        //selectable = currentButton.FindSelectable(joystickDir);
+        //currentButton = (Button)selectable;
+
+
+        
             if (prevState.ThumbSticks.Left.Y == 0 && state.ThumbSticks.Left.Y > 0)
             {
-
-                activeIndex--;
+                Selectable trySelect = currentButton.FindSelectableOnUp();
+                
+                if (trySelect != null)
+                {
+                    selectable = trySelect;
+                    currentButton = (Button)selectable;
+                }
             }
             if (prevState.ThumbSticks.Left.Y == 0 && state.ThumbSticks.Left.Y < 0)
             {
+                Selectable trySelect = currentButton.FindSelectableOnDown();
 
-                activeIndex++;
+                if (trySelect != null)
+                {
+                    selectable = trySelect;
+                    currentButton = (Button)selectable;
+                }
             }
-        }
+        
 
-        if (LeftRight)
-        {
+        
             if (prevState.ThumbSticks.Left.X == 0 && state.ThumbSticks.Left.X > 0)
             {
+                 Selectable trySelect = currentButton.FindSelectableOnRight();
 
-                activeIndex++;
+                 if (trySelect != null)
+                 {
+                     selectable = trySelect;
+                     currentButton = (Button)selectable;
+                 }
+            
             }
             if (prevState.ThumbSticks.Left.X == 0 && state.ThumbSticks.Left.X < 0)
             {
+                 Selectable trySelect = currentButton.FindSelectableOnLeft();
 
-                activeIndex--;
+                  if (trySelect != null)
+                  {
+                       selectable = trySelect;
+                       currentButton = (Button)selectable;
+                  }
+
             }
-        }
+       
 
 
-        if (activeIndex == clickAbles.Length)
-        {
-            activeIndex = 0;
-        }
-        if (activeIndex == -1)
-        {
-            activeIndex = clickAbles.Length -1;
-        }
 
         if (getButtonDown())
         {
             
-            clickAbles[activeIndex].onClick.Invoke();
+            currentButton.onClick.Invoke();
         }
-       
         
-
-        clickAbles[activeIndex].Select();
-       
+        currentButton.Select();
     }
 }
