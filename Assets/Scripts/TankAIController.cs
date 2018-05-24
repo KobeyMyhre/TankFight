@@ -212,9 +212,10 @@ public class TankAIController : TankController {
 
             //Move towards facing direction
             rb.velocity = ((Vector2)body.transform.up) * speed;
+            
         }
-        
-      
+
+
     }
 
 
@@ -333,8 +334,8 @@ public class TankAIController : TankController {
         }
         if(moveToTarget != null && moveToTarget.activeInHierarchy)
         {
-            PathRequestManager.RequestPath(transform.position, moveToTarget.transform.position, OnPathFound);
-            //moveToTank(moveToTarget);
+           // PathRequestManager.RequestPath(transform.position, moveToTarget.transform.position, OnPathFound);
+            moveToTank(moveToTarget);
         }
         else
         {
@@ -351,7 +352,7 @@ public class TankAIController : TankController {
         
         
         
-        if(shouldFire(aimAtTank()) && shootReactionTimer <= 0)
+        if(shouldFire(aimAtTank()))
         {
             if(hasPowerUp())
             {

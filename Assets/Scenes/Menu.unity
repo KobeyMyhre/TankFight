@@ -238,7 +238,8 @@ MonoBehaviour:
   activeIndex: 0
   UpDown: 1
   LeftRight: 0
-  selectImage: {fileID: 21300000, guid: f9b10d1eac03b294caf26464a5d68cbc, type: 3}
+  currentButton: {fileID: 954935583}
+  selectable: {fileID: 0}
 --- !u!1 &662832782
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.17400001, y: 0.3095556}
   m_AnchorMax: {x: 0.864, y: 0.5}
-  m_AnchoredPosition: {x: -1.1709995, y: -1.6738}
+  m_AnchoredPosition: {x: -1.1709995, y: -1.6737976}
   m_SizeDelta: {x: -2.1042175, y: 3.3475113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &954935583
@@ -437,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 2
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -807,7 +808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000081062, y: 1.05}
+  m_AnchoredPosition: {x: 0.000008106199, y: 1.0500183}
   m_SizeDelta: {x: -9.899994, y: 2.0999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1530212378

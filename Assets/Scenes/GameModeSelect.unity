@@ -633,16 +633,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f92c36b8c4dfaf479c0a01367953ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickAbles:
-  - {fileID: 824173760}
-  - {fileID: 380185460}
-  - {fileID: 1000388196}
-  - {fileID: 331622008}
   activeIndex: 2
   UpDown: 0
   LeftRight: 1
-  selectImage: {fileID: 0}
-  delayAmount: 0.4
+  currentButton: {fileID: 824173760}
+  selectable: {fileID: 0}
 --- !u!1 &768768613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,6 +1431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayNumOfPlayers: {fileID: 1707324020}
   numOfPlayers: 0
+  numOfAi: 0
 --- !u!4 &1639145625
 Transform:
   m_ObjectHideFlags: 0

@@ -50,7 +50,19 @@ public class TankGrenade : MonoBehaviour {
         }
     }
 
- 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            var tankGun = collision.transform.parent.GetComponent<TankGun>();
+            if(tankGun.playerNum != playerNum)
+            {
+                spawnBoom();
+                Explode();
+                me.returnToPool();
+            }
+        }
+    }
 
     // Update is called once per frame
     void Update ()
