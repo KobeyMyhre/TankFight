@@ -31,7 +31,15 @@ public class ObjectPool : MonoBehaviour {
         if(pool.Count > 0)
         {
             return pool.Pop();
-        }else { Debug.Log("Pool is empy"); return null; }
+        }
+        for (int i = 0; i < pooledAmount; i++)
+        {
+            var spawnedObj = Instantiate(pooledObject);
+            spawnedObj.GetComponent<pooledObject>().myPool = this;
+            spawnedObj.SetActive(false);
+            pool.Push(spawnedObj);
+        }
+        return pool.Pop();
     }
 	
 	// Update is called once per frame
